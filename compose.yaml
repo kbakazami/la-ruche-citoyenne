@@ -1,20 +1,20 @@
+version: '3'
 services:
-  postgres:
-    image: postgres:17-alpine
-    ports:
-      - 5432:5432
-    volumes:
-      - db-data:/var/lib/postgresql/data:rw
-    environment:
-      - POSTGRES_PASSWORD=test
-      - POSTGRES_USER=admin
-      - POSTGRES_DB=la-ruche-citoyenne
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
-
-volumes:
-  db-data:
+  database:
+    image: 'postgres:alpine'
+    environment:
+      POSTGRES_PASSWORD: l4ruch3_c1toy3nn3-69003
+      POSTGRES_USER: admin_lrc_69003
+      POSTGRES_DB: la-ruche-citoyenne
+    ports:
+      # To allow the host machine to access the ports below, modify the lines below.
+      # For example, to allow the host to connect to port 3306 on the container, you would change
+      # "3306" to "3306:3306". Where the first port is exposed to the host and the second is the container port.
+      # See https://docs.docker.com/compose/compose-file/compose-file-v3/#ports for more information.
+      - '5432'
